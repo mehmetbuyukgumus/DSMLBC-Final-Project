@@ -23,3 +23,7 @@ seçilmeye çalışılmış ve sonrasında kurulan modeller bu değişkenler üz
 Ardından dört adet farklı algoritmayla yeniden model kurulmuş ve bunların başarı kriterleri değerlendirilmiş.
 
 ![img.png](../img/models_img.png)
+
+### [VGCharts Veri Seti]([VGCarts](vgcharts))
+#### Veri Kaynağı: https://www.kaggle.com/datasets/gregorut/videogamesales
+Steam veri setiyle birlikte de kullanılabilir içerisinde oyunların isimlerinin yer aldığı bir değişken var. Ayrıca oyunların satış verilerine dair  ve platformalarına dair bilgileri de içeriyor.
