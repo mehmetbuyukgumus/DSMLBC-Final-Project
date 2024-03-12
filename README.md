@@ -1,6 +1,6 @@
 ## Şu anda veri setlerini inceleme ve literatür taraması aşamasındayız.
 
-### [Steam Veri Seti](SteamStoreGames)
+### [Steam Veri Seti](datasets/SteamStoreGames)
 #### Veri Kaynağı : https://www.kaggle.com/datasets/nikdavis/steam-store-games?select=steamspy_tag_data.csv
 Oyunların bilgileri, sistem gereksinimleri, resmi web sayfaları, steam community sayfalarına kadar
 detaylı bilgiler içeren bir veri seti. Github dosya limitleri sebebiyle veri setinin tamamını yüklemedim, detayları 
@@ -18,11 +18,11 @@ modeliyle çalışmışlar.
 Makalede yöntem itibariyle veri ön işleme kısımları geçildikten sonra hedef değişkeni en iyi açıklayan değişkenler
 seçilmeye çalışılmış ve sonrasında kurulan modeller bu değişkenler üzerinde yoğunlaştırılmış.
 
-![img.png](../img/img.png)
+![img.png](img/img.png)
 
 Ardından dört adet farklı algoritmayla yeniden model kurulmuş ve bunların başarı kriterleri değerlendirilmiş.
 
-![img.png](../img/models_img.png)
+![img.png](img/models_img.png)
 
 ### [VGCharts Veri Seti]([VGCarts](vgcharts))
 #### Veri Kaynağı: https://www.kaggle.com/datasets/gregorut/videogamesales
