@@ -23,3 +23,9 @@ seçilmeye çalışılmış ve sonrasında kurulan modeller bu değişkenler üz
 Ardından dört adet farklı algoritmayla yeniden model kurulmuş ve bunların başarı kriterleri değerlendirilmiş.
 
 ![img.png](../img/models_img.png)
+
+### [cgcharts video game sales](videoGameSales)
+#### Veri Kaynağı : https://www.kaggle.com/datasets/gregorut/videogamesales
+İçerisinde bölgelere göre satış fiyatlarını içeren bir video oyunları satış veri seti. Yukarıda özetlemeye çalıştığım
+Steam veri setinde yer alan oyun veri setiyle birleştirilebilir belki. Çünkü oyun isimleri sütunları her iki veri
+setinde de mevcut. Ayrıca çok temiz bir veri seti içinde hiçbir eksik gözlem bulunmuyor.
