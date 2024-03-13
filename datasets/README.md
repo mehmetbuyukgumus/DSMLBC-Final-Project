@@ -27,3 +27,8 @@ Ardından dört adet farklı algoritmayla yeniden model kurulmuş ve bunların b
 ### [VGCharts Veri Seti]([VGCarts](vgcharts))
 #### Veri Kaynağı: https://www.kaggle.com/datasets/gregorut/videogamesales
 Steam veri setiyle birlikte de kullanılabilir içerisinde oyunların isimlerinin yer aldığı bir değişken var. Ayrıca oyunların satış verilerine dair  ve platformalarına dair bilgileri de içeriyor.
+
+### [Steam Oyun Satış Tahmini 2028]([VGCarts](vgcharts))
+#### Veri Kaynağı: https://www.statista.com/statistics/547025/steam-game-sales-revenue/
+Steam'in 2028'e kadar olan oyun satışı gelirlerinin tahmin verisi. Kısıtlı bir veri seti ancak
+geleceğe dönük bir tahmin projesi gerçekleştirirsek referans olabilir diye düşündüm.
