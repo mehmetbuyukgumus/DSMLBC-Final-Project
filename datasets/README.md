@@ -32,3 +32,21 @@ Steam veri setiyle birlikte de kullanılabilir içerisinde oyunların isimlerini
 #### Veri Kaynağı: https://www.statista.com/statistics/547025/steam-game-sales-revenue/
 Steam'in 2028'e kadar olan oyun satışı gelirlerinin tahmin verisi. Kısıtlı bir veri seti ancak
 geleceğe dönük bir tahmin projesi gerçekleştirirsek referans olabilir diye düşündüm.
+
+### Bank Customer Churn 
+#### Veri Kaynağı: https://www.kaggle.com/datasets/shantanudhakadd/bank-customer-churn-prediction
+Veri setindeki değişkenler aşina olduğumuz kavramlar (tenure, yaş, cinsiyet, maaş vb) olduğu için üzerinde çalışması kolay olabilir diye düşündüm. Bankacılık sektöründen daha önce bir veri setiyle çalışmadık, portfolyomuzda olsun isteriz belki...
+
+### Wine Quality
+#### Veri Kaynağı: https://www.kaggle.com/datasets/yasserh/wine-quality-dataset
+Şarapların asiditesi, yoğunluğu, sülfatı vb. değişkenlerine göre sarabın kalitesini 1-10 arası değerlendiren bir veri seti. Literatür taraması yaparken şaraplar ve şarap tadımlarıyla ilgili kültürlenmek keyifli olabilir diye düşünerek bu veri setini seçtim. İçerik olarak da bana oldukça özgün geldi. 
+
+### Salary Prediction Dataset
+#### Veri Kaynağı: https://www.kaggle.com/datasets/thedevastator/jobs-dataset-from-glassdoor
+2017'de Glassdoor.com sitesinden alınan iş ilanlarından oluşan bir veri seti. Çoğunlukla veri dünyası ile ilgili meslekler barındırıyor. 
+İlgili mesleklerin maaş getirilerini tahminlenirken bir yandan da bu mesleklerdeki en önemli değişkenlerin neler olduğunu analiz etmek herkesin ilgisini çekebileceği için sunum aşamasında öne çıkabilir.
+
+### League of Legends Dataset
+#### Veri Kaynağı: https://www.kaggle.com/datasets/bobbyscience/league-of-legends-diamond-ranked-games-10-min/data
+Yaklaşık 10 bin farklı Elmas ligindeki LoL oyununun ilk 10 dakikası ile ilgili verileri içeren bir veri seti. Oyunu hangi takımın kazancağını tahminleyecek bir model oluşturulabilir.
+
