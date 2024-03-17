@@ -1,4 +1,10 @@
 ## Şu anda veri setlerini inceleme ve literatür taraması aşamasındayız.
+İşe Yarar Veri Kaynakları
+
+1. Airbnb verileri —> http://insideairbnb.com
+2. Fransa’ya dair veri bulmak için —> https://www.data.gouv.fr/fr/
+3. Paris’e ait veriler —> https://opendata.paris.fr/pages/home/
+4. Londra’yla ilgili veriler —> https://data.london.gov.uk/dataset?q=Transportation
 
 ### [Steam Veri Seti](SteamStoreGames)
 #### Veri Kaynağı : https://www.kaggle.com/datasets/nikdavis/steam-store-games?select=steamspy_tag_data.csv
