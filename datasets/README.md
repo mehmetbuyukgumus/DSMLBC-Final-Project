@@ -1,4 +1,10 @@
 ## Şu anda veri setlerini inceleme ve literatür taraması aşamasındayız.
+İşe Yarar Veri Kaynakları
+
+1. Airbnb verileri —> http://insideairbnb.com
+2. Fransa’ya dair veri bulmak için —> https://www.data.gouv.fr/fr/
+3. Paris’e ait veriler —> https://opendata.paris.fr/pages/home/
+4. Londra’yla ilgili veriler —> https://data.london.gov.uk/dataset?q=Transportation
 
 ### [Steam Veri Seti](SteamStoreGames)
 #### Veri Kaynağı : https://www.kaggle.com/datasets/nikdavis/steam-store-games?select=steamspy_tag_data.csv
@@ -50,3 +56,6 @@ Veri setindeki değişkenler aşina olduğumuz kavramlar (tenure, yaş, cinsiyet
 #### Veri Kaynağı: https://www.kaggle.com/datasets/bobbyscience/league-of-legends-diamond-ranked-games-10-min/data
 Yaklaşık 10 bin farklı Elmas ligindeki LoL oyununun ilk 10 dakikası ile ilgili verileri içeren bir veri seti. Oyunu hangi takımın kazancağını tahminleyecek bir model oluşturulabilir.
 
+### Youtube Dataset
+#### Veri Kaynağı : https://www.kaggle.com/datasets/datasnaek/youtube-new
+Youtube trendlerin veri seti. Kaggle'da en popüler veri setlerinden bir tanesi 
