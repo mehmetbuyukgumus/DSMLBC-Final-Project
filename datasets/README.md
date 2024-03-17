@@ -50,3 +50,6 @@ Veri setindeki değişkenler aşina olduğumuz kavramlar (tenure, yaş, cinsiyet
 #### Veri Kaynağı: https://www.kaggle.com/datasets/bobbyscience/league-of-legends-diamond-ranked-games-10-min/data
 Yaklaşık 10 bin farklı Elmas ligindeki LoL oyununun ilk 10 dakikası ile ilgili verileri içeren bir veri seti. Oyunu hangi takımın kazancağını tahminleyecek bir model oluşturulabilir.
 
+### Youtube Dataset
+#### Veri Kaynağı : https://www.kaggle.com/datasets/datasnaek/youtube-new
+Youtube trendlerin veri seti. Kaggle'da en popüler veri setlerinden bir tanesi 
