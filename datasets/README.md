@@ -59,3 +59,7 @@ Yaklaşık 10 bin farklı Elmas ligindeki LoL oyununun ilk 10 dakikası ile ilgi
 ### Youtube Dataset
 #### Veri Kaynağı : https://www.kaggle.com/datasets/datasnaek/youtube-new
 Youtube trendlerin veri seti. Kaggle'da en popüler veri setlerinden bir tanesi 
+
+### Anime Dataset
+#### Veri Kaynağı: https://www.kaggle.com/datasets/arnavvvvv/anime-dataset?select=profiles.csv
+Tavsiye sistemleri uzerinden degerlendirme yapilabilecek bir veri seti.
