@@ -63,3 +63,12 @@ Youtube trendlerin veri seti. Kaggle'da en popüler veri setlerinden bir tanesi
 ### Anime Dataset
 #### Veri Kaynağı: https://www.kaggle.com/datasets/arnavvvvv/anime-dataset?select=profiles.csv
 Tavsiye sistemleri uzerinden degerlendirme yapilabilecek bir veri seti.
+
+### Flight Price Prediction
+https://www.kaggle.com/datasets/shubhambathwal/flight-price-prediction/data
+a) Fiyat Havayolu şirketine göre değişir mi?
+b) Biletler son 1 veya 2 gün içinde alındığında fiyat nasıl etkilenir?
+c) Kalkış ve varış zamanına göre bilet fiyatı değişir mi?
+d) Source ve Destination değişikliği ile fiyat nasıl değişir?
+e) Ekonomi ve Business sınıfı arasında bilet fiyatı nasıl değişir?
+
