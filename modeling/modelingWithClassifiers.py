@@ -8,32 +8,33 @@ from lightgbm import LGBMClassifier
 from warnings import filterwarnings
 filterwarnings("ignore")
 
-pd.set_option("display.max_columns", None)
-pd.set_option("display.width", 500)
 
-# Data Prep
-data = pd.read_csv("datasets/winequalityN.csv")
-data["target"] = data["quality"].apply(lambda x: 1 if x >= 6 else 0)
-df = data.drop("quality", axis=1)
+def prep_data():
+    data = pd.read_csv("datasets/winequalityN.csv")
+    data["target"] = data["quality"].apply(lambda x: 1 if x >= 6 else 0)
+    df = data.drop("quality", axis=1)
+    return df
 
-# Mapping
-mapping = {"red" : 0,"white": 1}
-df["type"] = df["type"].map(mapping)
+def encoding(df, col_name):
+    mapping = {"red" : 0,"white": 1}
+    df[col_name] = df[col_name].map(mapping)
+    return df
 
-# N/A Values
-df.dropna(inplace=True)
+def dropna(df):
+    df.dropna(inplace=True)
+    return df
 
-# Standardization
-none_target_cols = [col for col in df.columns if col not in ["target"]]
-scaler = StandardScaler()
-df[none_target_cols] = scaler.fit_transform(df[none_target_cols])
+def Standardization(df):
+    none_target_cols = [col for col in df.columns if col not in ["target"]]
+    scaler = StandardScaler()
+    df[none_target_cols] = scaler.fit_transform(df[none_target_cols])
+    return df
 
-# Modeling
-X = df.drop("target", axis=1)
-y = df["target"]
-metrics = ["f1", "accuracy", "roc_auc", "precision"]
 
-def base_models(X, y, scoring="roc_auc", cv=3):
+def base_models(dataframe, cv=3):
+    X = dataframe.drop("target", axis=1)
+    y = dataframe["target"]
+    metrics = ["f1", "accuracy", "roc_auc", "precision"]
     print("Base Models....")
     classifiers = [('LR', LogisticRegression()),
                    ('RF', RandomForestClassifier()),
@@ -42,13 +43,12 @@ def base_models(X, y, scoring="roc_auc", cv=3):
                    ("XGBM", XGBClassifier()),
                    ("LGBM", LGBMClassifier(verbose=-1)),
                    ]
+    for metric in metrics:
+        for name, classifier in classifiers:
+            cv_results = cross_validate(classifier, X, y, cv=cv, scoring=metric)
+            print(f"{metric}: {round(cv_results['test_score'].mean(), 4)} ({name})")
 
-    for name, classifier in classifiers:
-        cv_results = cross_validate(classifier, X, y, cv=cv, scoring=scoring)
-        print(f"{scoring}: {round(cv_results['test_score'].mean(), 4)} ({name})")
 
-for metric in metrics:        
-    base_models(X,y, metric, cv=3)
     
     
 # İlk Sonuçlar
