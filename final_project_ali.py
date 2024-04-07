@@ -152,4 +152,4 @@ print(cm)
 
 
 print(f"Accuracy: {round(accuracy_score(y_pred, y_test))}")
-# ali
+# ali Cey
