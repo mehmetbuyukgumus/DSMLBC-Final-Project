@@ -13,6 +13,13 @@ from sklearn.model_selection import cross_validate, GridSearchCV, train_test_spl
 from sklearn.metrics import roc_curve, auc, classification_report, confusion_matrix, accuracy_score, ConfusionMatrixDisplay,recall_score, f1_score
 from sklearn.multiclass import OneVsRestClassifier
 import warnings
+from sklearn.svm import SVC
+from xgboost import XGBClassifier
+from lightgbm import LGBMClassifier
+from catboost import CatBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
@@ -133,7 +140,7 @@ for col in df.columns:
 df["total acidity"] = df["fixed acidity"] + df["volatile acidity"] + df["citric acid"]
 
 df["residul sugar levels"] = pd.cut(df["residual sugar"],
-                                    bins=[0, 0.6, 10, 20, 70, 1000],
+                                    bins=[0, 1, 17, 35, 120, 1000],
                                     labels=["bone_dry", "dry", "off_dry", "medium_dry", "sweet"])
 
 df["alcohol levels"] = pd.cut(df["alcohol"], bins=[0, 12.5, 13.5, 14.5, 20],
@@ -143,13 +150,15 @@ df["white perfect pH"] = np.where((df["type"] == 1) & (df["pH"] >= 3) & (df["pH"
 
 df["red perfect pH"] = np.where((df["type"] == 0) & (df["pH"] >= 3.3) & (df["pH"] <= 3.6), 1, 0)
 
-df["Cquality"] = pd.cut(df["quality"], bins=[0, 4, 6, 10], labels=["bad", "good", "perfect"])
+df["perfect ph"] = df["white perfect pH"] + df["red perfect pH"]
+
+df["Cquality"] = pd.cut(df["quality"], bins=[0, 5, 6, 10], labels=["bad", "good", "perfect"])
 
 df["residul sugar levels"] = LabelEncoder().fit_transform(df["residul sugar levels"])
 df["alcohol levels"] = LabelEncoder().fit_transform(df["alcohol levels"])
 df["Cquality"] = LabelEncoder().fit_transform(df["Cquality"])
 
-df.drop(columns=["quality"], inplace=True, axis=1)
+df.drop(columns=["quality", "red perfect pH", "white perfect pH"], inplace=True, axis=1)
 
 y = df["Cquality"]
 X = df.drop(["Cquality"], axis=1)
@@ -182,7 +191,7 @@ sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-classifier = DecisionTreeClassifier(criterion = 'entropy', random_state = 0)
+classifier = DecisionTreeClassifier(criterion = 'entropy')
 classifier.fit(X_train, y_train)
 y_pred = classifier.predict(X_test)
 
@@ -203,3 +212,48 @@ print("Classification Report:",)
 print(result1)
 result2 = accuracy_score(y_test,y_pred)
 print("Accuracy:",result2)
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Initialize SVM classifier
+svm = SVC(kernel='linear', C=1.0)
+
+# Fit the classifier to the training data
+svm.fit(X_train, y_train)
+
+# Predict on the testing data
+y_pred = svm.predict(X_test)
+
+# Calculate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+
+# Print classification report
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.metrics import accuracy_score, classification_report
+
+
+# Initialize Gradient Boosting classifier
+gb_classifier = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
+
+# Fit the classifier to the training data
+gb_classifier.fit(X_train, y_train)
+
+# Predict on the testing data
+y_pred = gb_classifier.predict(X_test)
+
+# Calculate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+
+# Print classification report
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+
