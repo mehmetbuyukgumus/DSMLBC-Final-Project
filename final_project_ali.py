@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-from sklearn import preprocessing
+from sklearn import preprocessing, metrics
 from sklearn.preprocessing import MinMaxScaler, LabelEncoder, StandardScaler, RobustScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
@@ -10,7 +10,7 @@ from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, VotingClassifier, AdaBoostClassifier
 from sklearn.model_selection import cross_validate, GridSearchCV, train_test_split
-from sklearn.metrics import roc_curve, auc, classification_report, confusion_matrix, accuracy_score
+from sklearn.metrics import roc_curve, auc, classification_report, confusion_matrix, accuracy_score, ConfusionMatrixDisplay,recall_score, f1_score
 from sklearn.multiclass import OneVsRestClassifier
 import warnings
 
@@ -18,7 +18,7 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 pd.set_option('display.width', 1000)
 
-df = pd.read_csv("Miull/Projects_doc/winequalityN.csv")
+df = pd.read_csv("datasets/winequalityN.csv")
 
 def check_df(dataframe, head=5):
     print(10*"#" + " Shape ".center(9) + 10*"#")
@@ -154,6 +154,8 @@ df.drop(columns=["quality"], inplace=True, axis=1)
 y = df["Cquality"]
 X = df.drop(["Cquality"], axis=1)
 
+# ----------------------------------------------------------------------------------------------------------------------
+
 MinMaxScaler = preprocessing.MinMaxScaler()
 X = MinMaxScaler.fit_transform(X)
 
@@ -170,4 +172,34 @@ result1 = classification_report(y_test, ypred)
 print("Classification Report:",)
 print(result1)
 result2 = accuracy_score(y_test,ypred)
+print("Accuracy:",result2)
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
+
+classifier = DecisionTreeClassifier(criterion = 'entropy', random_state = 0)
+classifier.fit(X_train, y_train)
+y_pred = classifier.predict(X_test)
+
+cm = confusion_matrix(y_test, y_pred, labels=classifier.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm,
+                             display_labels=classifier.classes_)
+disp.plot()
+plt.show()
+print('Accuracy: ', accuracy_score(y_test, y_pred))
+print('F1-Score : ', f1_score(y_test, y_pred, average = 'weighted'))
+print('Recall: ', recall_score(y_test, y_pred ,average = 'micro'))
+
+result = confusion_matrix(y_test, y_pred)
+print("Confusion Matrix:")
+print(result)
+result1 = classification_report(y_test, y_pred)
+print("Classification Report:",)
+print(result1)
+result2 = accuracy_score(y_test,y_pred)
 print("Accuracy:",result2)
