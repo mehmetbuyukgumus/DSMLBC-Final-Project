@@ -108,12 +108,12 @@ def grab_col_names(dataframe, cat_th=10, car_th=20):
     num_cols = [col for col in dataframe.columns if dataframe[col].dtypes != "O"]
     num_cols = [col for col in num_cols if col not in num_but_cat]
 
-    print(f"Observations: {dataframe.shape[0]}")
-    print(f"Variables: {dataframe.shape[1]}")
-    print(f'cat_cols: {len(cat_cols)}')
-    print(f'num_cols: {len(num_cols)}')
-    print(f'cat_but_car: {len(cat_but_car)}')
-    print(f'num_but_cat: {len(num_but_cat)}')
+    # print(f"Observations: {dataframe.shape[0]}")
+    # print(f"Variables: {dataframe.shape[1]}")
+    # print(f'cat_cols: {len(cat_cols)}')
+    # print(f'num_cols: {len(num_cols)}')
+    # print(f'cat_but_car: {len(cat_but_car)}')
+    # print(f'num_but_cat: {len(num_but_cat)}')
     return cat_cols, num_cols, cat_but_car
 
 
