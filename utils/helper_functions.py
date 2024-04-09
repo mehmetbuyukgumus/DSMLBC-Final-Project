@@ -1,3 +1,20 @@
+def check_df(dataframe, head=5):
+    print(10*"#" + " Shape ".center(9) + 10*"#")
+    print(dataframe.shape)
+    print(10*"#" + " Types ".center(9) + 10*"#")
+    print(dataframe.dtypes)
+    print(10*"#" + " Head ".center(9) + 10*"#")
+    print(dataframe.head(head))
+    print(10*"#" + " Tail ".center(9) + 10*"#")
+    print(dataframe.tail(head))
+    print(10*"#" + " NA ".center(9) + 10*"#")
+    print(dataframe.isnull().sum())
+    print(10*"#" + " Quantiles ".center(9) + 10*"#")
+    print(dataframe.describe([0.05, 0.10, 0.20, 0.30, 0.40, 0.50, 0.60, 0.70, 0.80, 0.90, 0.95, 0.99]).T)
+    print(10*"#" + " Unique Values ".center(9) + 10*"#")
+    print(dataframe.nunique())
+
+
 def outlier_thresholds(dataframe, col_name, q1, q3):
     """
     Bir dataframe için verilen ilgili kolondaki aykırı değerleri tespit edebilmek adına üst ve alt limitleri belirlemeyi
@@ -91,12 +108,12 @@ def grab_col_names(dataframe, cat_th=10, car_th=20):
     num_cols = [col for col in dataframe.columns if dataframe[col].dtypes != "O"]
     num_cols = [col for col in num_cols if col not in num_but_cat]
 
-    print(f"Observations: {dataframe.shape[0]}")
-    print(f"Variables: {dataframe.shape[1]}")
-    print(f'cat_cols: {len(cat_cols)}')
-    print(f'num_cols: {len(num_cols)}')
-    print(f'cat_but_car: {len(cat_but_car)}')
-    print(f'num_but_cat: {len(num_but_cat)}')
+    # print(f"Observations: {dataframe.shape[0]}")
+    # print(f"Variables: {dataframe.shape[1]}")
+    # print(f'cat_cols: {len(cat_cols)}')
+    # print(f'num_cols: {len(num_cols)}')
+    # print(f'cat_but_car: {len(cat_but_car)}')
+    # print(f'num_but_cat: {len(num_but_cat)}')
     return cat_cols, num_cols, cat_but_car
 
 
@@ -149,7 +166,7 @@ def remove_outlier(dataframe, col_name):
     return df_without_outliers
 
 
-def replace_with_thresholds(dataframe, variable):
+def replace_with_thresholds(dataframe, variable, q1, q3):
     """
     Up limitin üzerinde yer alan değerleri up değeri ile low limitin altında yer alan değerli ise low değerliyle
     baskılar. Bu fonksiyonun da "outlier_thresholds" fonksiyonuna bağımlılığı vardır.
@@ -163,7 +180,7 @@ def replace_with_thresholds(dataframe, variable):
     -------
     Herhangi bir değer return etmez
     """
-    low_limit, up_limit = outlier_thresholds(dataframe, variable)
+    low_limit, up_limit = outlier_thresholds(dataframe, variable, q1, q3)
     dataframe.loc[(dataframe[variable] < low_limit), variable] = low_limit
     dataframe.loc[(dataframe[variable] > up_limit), variable] = up_limit
 
@@ -354,3 +371,29 @@ def rare_encoder(dataframe, rare_perc):
         temp_df[var] = np.where(temp_df[var].isin(rare_labels), 'Rare', temp_df[var])
 
     return temp_df
+
+def quick_missing_imp(data, num_method="median", cat_length=20, target="SalePrice"):
+    variables_with_na = [col for col in data.columns if data[col].isnull().sum() > 0]  # Eksik değere sahip olan değişkenler listelenir
+
+    temp_target = data[target]
+
+    print("# BEFORE")
+    print(data[variables_with_na].isnull().sum(), "\n\n")  # Uygulama öncesi değişkenlerin eksik değerlerinin sayısı
+
+    # değişken object ve sınıf sayısı cat_lengthe eşit veya altındaysa boş değerleri mode ile doldur
+    data = data.apply(lambda x: x.fillna(x.mode()[0]) if (x.dtype == "O" and len(x.unique()) <= cat_length) else x, axis=0)
+
+    # num_method mean ise tipi object olmayan değişkenlerin boş değerleri ortalama ile dolduruluyor
+    if num_method == "mean":
+        data = data.apply(lambda x: x.fillna(x.mean()) if x.dtype != "O" else x, axis=0)
+    # num_method median ise tipi object olmayan değişkenlerin boş değerleri ortalama ile dolduruluyor
+    elif num_method == "median":
+        data = data.apply(lambda x: x.fillna(x.median()) if x.dtype != "O" else x, axis=0)
+
+    data[target] = temp_target
+
+    print("# AFTER \n Imputation method is 'MODE' for categorical variables!")
+    print(" Imputation method is '" + num_method.upper() + "' for numeric variables! \n")
+    print(data[variables_with_na].isnull().sum(), "\n\n")
+
+    return data
