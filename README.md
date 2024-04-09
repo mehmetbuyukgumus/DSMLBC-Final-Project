@@ -13,5 +13,5 @@ pip install requirements.txt
 ```
 ## Run
 ```bash
-`python3 main.py`
+python3 main.py
 ```
