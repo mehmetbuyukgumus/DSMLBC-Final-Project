@@ -4,8 +4,8 @@ from utils.helper_functions import grab_col_names, replace_with_thresholds
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler, StandardScaler
 
 
-def load_data():
-    dataframe = pd.read_csv("datasets/winequalityN.csv")
+def load_data(path):
+    dataframe = pd.read_csv(path)
     return dataframe
 
 
